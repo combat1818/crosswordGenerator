@@ -96,6 +96,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -121,6 +122,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -143,6 +145,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -165,6 +168,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -187,6 +191,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -209,6 +214,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -231,6 +237,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -253,6 +260,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -275,6 +283,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -297,6 +306,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -319,6 +329,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -341,6 +352,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -363,6 +375,7 @@ function Row(props) {
               : "inputActive"
           }
           onClick={handleLeftClick}
+          autoComplete="off"
           onContextMenu={handleRightClick}
           onChange={handleInputChange}
           maxLength={1}
@@ -386,6 +399,7 @@ function Row(props) {
         id={0}
         className={props.data[props.rowNumber][0] === 0 ? "cell" : "cell1"}
         onClick={handleLeftClick}
+        autoComplete="off"
         //onDoubleClick={handleDoubleClick}
         onContextMenu={handleRightClick}
       >

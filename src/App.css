@@ -6,6 +6,44 @@ body {
   overflow-x: hidden;
 }
 
+.mainView {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.leftSide {
+  display: flex;
+  width: 200px;
+  height: 100vh;
+  align-items: center;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  height: 100vh;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.arrowButton:hover {
+  background-color: #ffe3ba;
+}
+
+.arrowButton:active {
+  background-color: #ffd9a1;
+  box-shadow: 0 5px #edca95;
+}
+
+.arrowButton {
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -56,6 +94,22 @@ select:focus {
   background-color: #c1ff8f;
   text-align: center;
   font-size: 30px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.maxInput {
+  text-align: center;
+  background-color: #ff8787;
+  color: white;
+  font-size: large;
+  width: 150px;
+  border-radius: 6px;
+  border: none;
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
