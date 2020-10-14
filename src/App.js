@@ -12,11 +12,33 @@ import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
 import findBeginnings from "./utils/FunctionFindBegninnings";
 import generateCrosswords from "./utils/FunctionGenerateCrossword";
 import Dictionary from "./utils/Dictionary";
+import wordsMap from "./mapInJSON.json";
+import quickGenerate from "./utils/FunctionQuickGenerate";
 let possibilities;
 let index;
-let maxResult;
+let maxResult = 10000;
 
 //TO DO: ALGORYTM GENERUJE TAKIE SAME HASLA!
+
+function shuffle(array) {
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
 function App() {
   const [matrix, setMatrix] = useState([
@@ -33,26 +55,38 @@ function App() {
   ]);
   const [appState, setAppState] = useState("No options available");
 
-  const [generatorWorker] = useWorker(generateCrosswords);
+  const [generatorWorker] = useWorker(quickGenerate);
 
-  const startGenerating = async (matrix, start, beginnings, dictionary) => {
+  const startGenerating = async (
+    matrix,
+    start,
+    beginnings,
+    dictionary,
+    top
+  ) => {
     setAppState("Loading. Please Wait");
     //console.log("Start.");
+
     const result = await generatorWorker(
       matrix,
       start,
       beginnings,
-      dictionary,
-      []
+      wordsMap,
+      [],
+      top
     ); // non-blocking UI
-    //console.log("End.");
+    //console.log("End.");*/
+    //const result = quickGenerate(matrix, start, beginnings, wordsMap, [], top);
     possibilities = result;
+    possibilities = shuffle(possibilities);
+    //possibilities.sort(() => 0.5 - Math.random());
+    //console.log(possibilities.length);
     //console.log(possibilities);
     //console.log(possibilities);
     index = 0;
     //console.log(possibilities[0]);
     if (possibilities.length > 0) {
-      setAppState("Show next layout");
+      setAppState(index + 1 + "/" + possibilities.length);
       setMatrix(possibilities[0]);
     } else {
       setAppState("No options available");
@@ -92,10 +126,12 @@ function App() {
 
   const handleArrowClick = (e) => {
     //console.log("clicked");
+    //console.log(wordsMap["1,1,1"]);
     if (possibilities == undefined) return;
     //console.log(e.currentTarget.id);
     //console.log(possibilities);
     //console.log(index);
+
     if (e.currentTarget.id == 21) {
       //console.log("left");
 
@@ -103,6 +139,7 @@ function App() {
         index--;
         const newMatrix = possibilities[index];
         setMatrix(newMatrix);
+        setAppState(index + 1 + "/" + possibilities.length);
       }
     } else if (e.currentTarget.id == 22) {
       //console.log("right");
@@ -111,6 +148,7 @@ function App() {
         index++;
         const newMatrix = possibilities[index];
         setMatrix(newMatrix);
+        setAppState(index + 1 + "/" + possibilities.length);
       }
     }
   };
@@ -118,17 +156,20 @@ function App() {
   const handleGeneratingStart = () => {
     let beginnings = findBeginnings(matrix);
     let dictionary = Dictionary;
-    console.log(beginnings);
+    //console.log(beginnings);
 
     if (beginnings.length < 1) {
       setAppState("Create layout!");
     } else {
-      startGenerating(matrix, beginnings[0], beginnings, dictionary);
+      startGenerating(matrix, beginnings[0], beginnings, dictionary, maxResult);
     }
   };
 
   const handleMaxResultChange = (e) => {
     console.log(e.target.value);
+    if (e.target.value == "") {
+      maxResult = 10000;
+    }
     maxResult = e.target.value;
     console.log(maxResult);
   };
